@@ -1,0 +1,63 @@
+<?php
+	$_product = $this->getProduct();
+	$_helper = $this->helper('catalog/output');
+?>
+<div class="galleria">
+	<?php foreach ($this->getGalleryImages() as $_image): ?>
+	    <img src="<?php echo $this->helper('adaptiveResize/image')->init($this->getProduct(), 'image', $_image->getFile())->adaptiveResize(440,660); ?>" data-big="<?php echo $this->helper('adaptiveResize/image')->init($this->getProduct(), 'image', $_image->getFile())->adaptiveResize(880,1320); ?>" width="440" height="660" alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>" />
+	<?php endforeach; ?>
+
+</div>
+
+<script>
+
+zoomImages = new Array();
+zoomImages = [
+<?php foreach ($this->getGalleryImages() as $_image): ?>
+"<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile()); ?>",
+<?php endforeach; ?>
+];
+
+	Galleria.loadTheme('<?php echo Mage::getBaseUrl("js")?>copimaj/ProductMedia/themes/cristallini/galleria.cristallini.js');
+	Galleria.run('.galleria', {
+		carouselSteps: 1,
+		showCounter: false,
+		transition: 'fade',
+		transitionInitial: 'fade',
+		imageCrop: 'width',
+		imagePan: true,
+		imagePanSmoothness: 6
+	 	}).ready(function() {
+	 		var self = this;
+			// Enter full
+			this.bind('fullscreen_enter', function(e) {
+				
+				// handle current
+				var curImage = this.getActiveImage();
+				curImage.src = zoomImages[this.getIndex()];
+
+				// handle thumbnails
+				this.bind("image", function(i) {
+					i.imageTarget.src = zoomImages[i.index]
+				})
+				// Stage onclick
+				// this.jQuery('stage').on('click', function(e) {
+				// 	self.exitFullscreen();
+				// })
+			})	
+
+			// Exit full
+			this.bind('fullscreen_exit', function(e) {
+				this.unbind("image");
+			})	
+
+			// Stage onclick
+			// this.jQuery('stage').on('click', function(e) {
+			// 	self.enterFullscreen();
+			// })
+		});
+</script>
+
+<style>
+    .galleria{ width: 520px; height: 660px; }
+</style>

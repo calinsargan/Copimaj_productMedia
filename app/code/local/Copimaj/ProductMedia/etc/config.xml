@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Copimaj_ProductMedia>
+            <version>0.1.0</version>
+        </Copimaj_ProductMedia>
+    </modules>
+    <global>
+        <helpers>
+            <productmedia>
+                <class>Copimaj_ProductMedia_Helper</class>
+            </productmedia>
+        </helpers>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <module>
+                    <file>copimaj-productmedia.xml</file>
+                </module>
+            </updates>
+        </layout>
+    </frontend>
+</config> 
