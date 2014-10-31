@@ -4,7 +4,7 @@
 ?>
 <div class="galleria">
 	<?php foreach ($this->getGalleryImages() as $_image): ?>
-	    <img src="<?php echo $this->helper('adaptiveResize/image')->init($this->getProduct(), 'image', $_image->getFile())->adaptiveResize(440,660); ?>" data-big="<?php echo $this->helper('adaptiveResize/image')->init($this->getProduct(), 'image', $_image->getFile())->adaptiveResize(880,1320); ?>" width="440" height="660" alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>" />
+	    <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile())->catalog(440,660); ?>" data-big="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile())->catalog(880,1320); ?>" width="440" height="660" alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>" />
 	<?php endforeach; ?>
 
 </div>
