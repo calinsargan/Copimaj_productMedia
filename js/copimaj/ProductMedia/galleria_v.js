@@ -1094,8 +1094,7 @@ var Galleria = function() {
             });
 
             var img21 = self.getActiveImage();
-            console.log($(img21));
-
+            
             // bind the scaling to the resize event
             $(window).resize( function() {
                 fullscreen.scale();
