@@ -11,6 +11,22 @@
                 <class>Copimaj_ProductMedia_Helper</class>
             </productmedia>
         </helpers>
+        <models>
+            <copimaj_productmedia>
+                <class>Copimaj_ProductMedia_Model</class>
+            </copimaj_productmedia>
+        </models>
+        <events>
+            <catalog_block_product_list_collection>
+                <observers>
+                    <compimaj_productmedia_new_filter>
+                        <type>singleton</type>
+                        <class>copimaj_productmedia/observer</class>
+                        <method>addOnlyNewFilter</method>
+                    </compimaj_productmedia_new_filter>
+                </observers>
+            </catalog_block_product_list_collection>
+        </events>
     </global>
     <frontend>
         <layout>
