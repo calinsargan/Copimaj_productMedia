@@ -10,6 +10,11 @@ class Copimaj_ProductMedia_Model_Observer {
         $productCollection = $observer->getEvent()->getCollection();
 
         $currentCat = Mage::registry('current_category');
+
+        if (!$currentCat) {
+            return $productCollection;
+        }
+
         if ( $currentCat->getParentId() == Mage::app()->getStore()->getRootCategoryId() )
         {
             // current category is a toplevel category
